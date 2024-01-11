@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![Home page](https://github.com/usofnem/registrar-app/blob/2c470462113b2e7f611d07a8ed516c4719f181d7/finishing.png "Usofnem frontpage")
 
 # Usofnem Registrar
@@ -46,3 +47,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fusofnem%2Fregistrar-app.git&project-name=usofnem-clone-project&repo-name=usofnem-clone-project&redirect-url=https%3A%2F%2Fusofnem.com&demo-title=Usofnem%20Registrar%20Demo&demo-description=This%20demo%20version%20about%20usofnem%20web3%20name%20registrar%20and%20unique%20nft%20marketplace.&demo-url=https%3A%2F%2Fusofnem.com&demo-image=https%3A%2F%2Fpbs.twimg.com%2Fmedia%2FFgc7zmyaAAAOxIf%3Fformat%3Dpng%26name%3Dmedium)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+=======
+Ens domain selling dapp
+>>>>>>> 78b697df39d105951003d7b96e06d6204a21d983
