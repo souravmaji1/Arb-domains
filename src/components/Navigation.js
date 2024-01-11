@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssBaseline, Paper, Box, BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { ShoppingCartOutlined, SettingsOutlined, HouseOutlined, FenceOutlined } from '@mui/icons-material';
+import { ShoppingCartOutlined, SettingsOutlined, HouseOutlined, AttachMoney } from '@mui/icons-material';
 
 export default function Navigation() {
 
@@ -18,6 +18,11 @@ export default function Navigation() {
                         label="Domains"
                         href="/claimed"
                         icon={<ShoppingCartOutlined />}
+                    />
+                    <BottomNavigationAction
+                        label="Send"
+                        href="/send"
+                        icon={<AttachMoney />}
                     />
                  {/*   <BottomNavigationAction
                         label="Record"

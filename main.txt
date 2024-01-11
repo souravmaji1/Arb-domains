@@ -28,7 +28,7 @@ import {
 import NotConnected from '../src/components/NotConnected';
 import Tss from "../src/components/Table";
 import Footer from "../src/components/Footer";
-import USDCContractAbi from '../src/contracts/USDCContract.json';
+
 
 
 
@@ -46,9 +46,8 @@ const Home = () => {
 
 	const [currentAccount, setCurrentAccount] = useState('');
 	const [showSuccessGif, setShowSuccessGif] = useState(false);
-	const [usdcContract, setUsdcContract] = useState(null);
-
-
+	
+    const [usdcContract, setUsdcContract] = useState(null);
 	// Add some state data propertie
 	const [name, setName] = useState('');
 	const [category, setCategory] = useState('');
@@ -310,58 +309,106 @@ const Home = () => {
 	}
 
 	const userMumbaiRegister = async () => {
-        if (!name || !category) {
-          return;
-        }
-      
-        try {
-          // Check if usdcContract is initialized
-          if (!usdcContract) {
-            console.error('USDC contract is not initialized.');
-            return;
-          }
-      
-          // Calculate price based on length of name (change this to match your contract)
-          const price = 1;
-      
-          // Get the user's address
-          const userAddress = currentAccount;
-      
-          // Call the approve function first
-          const approveTx = await usdcContract.approve(Usofnem, price);
-      
-          // Wait for the approval transaction to be mined
-          await approveTx.wait();
-      
-          // Call the registerusdc function
-          const contract = new ethers.Contract(Usofnem, UsofnemAbi.abi, signer);
-          console.log('Checking Domain Names ...');
-          toast('Checking Domain Names ...', /* ... */);
-          let tx = await contract.registerusdc(name, category);
-      
-          // Wait for the transaction to be mined
-          const receipt = await tx.wait();
-      
-          // Check if the transaction was successfully completed
-          if (receipt.status === 1) {
-            console.log('Domain minted! https://bscscan.com/tx/' + tx.hash);
-            toast('Success! Please wait ...!', /* ... */);
-            // Open Claimed page after 2 seconds
-            setTimeout(() => {
-              router.push('/claimed');
-            }, 2000);
-            setName('');
-            setCategory('');
-          } else {
-            alert('Transaction failed! Please try again');
-            toast('Transaction failed! Please try again', /* ... */);
-          }
-        } catch (error) {
-          console.error(error);
-          toast('Oh no! Domain already taken.', /* ... */);
-        }
-      };
-      
+		// Don't run if the field is empty
+		if (!name, !category) { return }
+		// Alert the user if the domain is too short
+		if (name.length < 1) {
+			alert('Domain must be at least 1 characters long');
+			toast('Domain must be at least 1 characters long',
+				{
+					icon: '👏',
+					style: {
+						borderRadius: '10px',
+						background: '#333',
+						color: '#fff',
+					},
+				}
+			);
+			return;
+		}
+		// Calculate price based on length of name (change this to match your contract)
+		const price = name.length === 1 ? '0.01' : name.length === 2 ? '0.01' : name.length === 3 ? '0.01' : name.length === 4 ? '0.01' : name.length === 5 ? '0.007' : name.length === 6 ? '0.007' : name.length === 7 ? '0.007' : name.length === 8 ? '0.005' : '0.003';
+		console.log("Minting domain", name, "with price", price);
+		try {
+			const { ethereum } = window;
+			if (ethereum) {
+				const provider = new ethers.providers.Web3Provider(ethereum);
+				const signer = provider.getSigner();
+				const contract = new ethers.Contract(Usofnem, UsofnemAbi.abi, signer);
+
+				console.log("Checking Domain Names ...")
+				toast('Checking Domain Names ...',
+					{
+						icon: '☕',
+						style: {
+							borderRadius: '10px',
+							background: '#333',
+							color: '#fff',
+						},
+					}
+				);
+
+				let tx = await contract.register(name, category, { value: ethers.utils.parseEther(price) });
+				// Wait for the transaction to be mined
+				const receipt = await tx.wait();
+
+				// Check if the transaction was successfully completed
+				if (receipt.status === 1) {
+					console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
+					toast('Success! Please wait ...!',
+						{
+							icon: '👏',
+							style: {
+								borderRadius: '10px',
+								background: '#333',
+								color: '#fff',
+							},
+						}
+					);
+
+					setShowSuccessGif(true);
+
+					// Open Claimed page after 2 seconds
+					setTimeout(() => {
+						router.push('/claimed');
+					}, 3400);
+
+					setTimeout(() => {
+						setShowSuccessGif(false);
+					}, 3400);
+
+					setName('');
+					setCategory('');
+				}
+				else {
+					alert("Transaction failed! Please try again");
+					toast('Transaction failed! Please try again',
+						{
+							icon: '❌',
+							style: {
+								borderRadius: '10px',
+								background: '#333',
+								color: '#fff',
+							},
+						}
+					);
+				}
+			}
+		}
+		catch (error) {
+			console.log(error);
+			toast('Oh no! Domain already taken.',
+				{
+					icon: '🤬',
+					style: {
+						borderRadius: '10px',
+						background: '#333',
+						color: 'red',
+					},
+				}
+			);
+		}
+	}
 
 
 	const userBNBTestRegister = async () => {
@@ -556,6 +603,62 @@ const Home = () => {
 		}
 	}
 
+    	const userUsdcRegister = async () => {
+        if (!name || !category) {
+          return;
+        }
+      
+        try {
+          // Check if usdcContract is initialized
+          if (!usdcContract) {
+            console.error('USDC contract is not initialized.');
+            return;
+          }
+      
+          // Calculate price based on length of name (change this to match your contract)
+          const price = 1 * 10**6;
+      
+          // Get the user's address
+          const userAddress = currentAccount;
+      
+          // Call the approve function first
+          const approveTx = await usdcContract.approve(Usofnem, price);
+      
+          // Wait for the approval transaction to be mined
+          await approveTx.wait();
+
+		  const provider = new ethers.providers.Web3Provider(ethereum);
+		  const signer = provider.getSigner();
+      
+          // Call the registerusdc function
+          const contract = new ethers.Contract(Usofnem, UsofnemAbi.abi, signer);
+          console.log('Checking Domain Names ...');
+          toast('Checking Domain Names ...', /* ... */);
+          let tx = await contract.registerUsdc(name, category);
+      
+          // Wait for the transaction to be mined
+          const receipt = await tx.wait();
+      
+          // Check if the transaction was successfully completed
+          if (receipt.status === 1) {
+            console.log('Domain minted! https://bscscan.com/tx/' + tx.hash);
+            toast('Success! Please wait ...!', /* ... */);
+            // Open Claimed page after 2 seconds
+            setTimeout(() => {
+              router.push('/claimed');
+            }, 2000);
+            setName('');
+            setCategory('');
+          } else {
+            alert('Transaction failed! Please try again');
+            toast('Transaction failed! Please try again', /* ... */);
+          }
+        } catch (error) {
+          console.error(error);
+          toast('Oh no! Domain already taken.', /* ... */);
+        }
+      };
+
 
 
 	const userETHRegister = async () => {
@@ -744,6 +847,7 @@ const Home = () => {
 						<ColorButton style={{ fontFamily: "Unbounded, cursive",margin:"auto",width:"auto"}}    sx={{ width: '100%', mt: 4, mb: 4 }} variant="contained" onClick={network.includes("BSC Mainnet") ? userBNBRegister : network.includes("Ethereum") ? userETHRegister : network.includes("Mumbai") ? userMumbaiRegister : network.includes("BNBTest") ? userBNBTestRegister : userPolygonRegister}>
 								Register
 							</ColorButton>
+							
 							
 						</Stack>
 					)}

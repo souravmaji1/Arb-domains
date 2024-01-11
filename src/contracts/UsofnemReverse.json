@@ -1,79 +1,94 @@
 {
     "abi": [
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "_uon",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "records",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "addr",
-              "type": "address"
-            }
-          ],
-          "name": "resolve",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            }
-          ],
-          "name": "setReverse",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "uon",
-          "outputs": [
-            {
-              "internalType": "contract Usofnem",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        }
-      ]
+      {
+        "type": "constructor",
+        "name": "",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "_uon",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "records",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "string",
+            "name": "",
+            "internalType": "string"
+          }
+        ],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "resolve",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "addr",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "string",
+            "name": "",
+            "internalType": "string"
+          }
+        ],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "sendViaENS",
+        "inputs": [
+          {
+            "type": "string",
+            "name": "ensName",
+            "internalType": "string"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "payable"
+      },
+      {
+        "type": "function",
+        "name": "setReverse",
+        "inputs": [
+          {
+            "type": "string",
+            "name": "name",
+            "internalType": "string"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "uon",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "address",
+            "name": "",
+            "internalType": "contract Usofnem"
+          }
+        ],
+        "stateMutability": "view"
+      }
+    ]
 }

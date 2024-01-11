@@ -314,34 +314,24 @@
 
 
 
-
-.MuiFormControl-root{
-  width: 50%;
-  margin: auto;
-  display: flex;
-}
-
-#front{
-  font-size: 80px;
-}
-
-
-
-  @media screen and (max-width: 800px) {
-    #front {
-      font-size: 49px;
-    }
-    .MuiFormControl-root{
-      width: 100%;
-    }
-    .MuiButtonBase-root{
-      width: 100%;
-    }
+  .MuiFormControl-root{
+    width: 100%;
+    margin: auto;
+    display: flex;
   }
 
 
-
-
+  #front{
+    font-size: 80px;
+  }
+  
+  
+  
+    @media screen and (max-width: 800px) {
+      #front {
+        font-size: 49px;
+      }
+    }
 
 
 

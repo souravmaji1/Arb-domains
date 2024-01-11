@@ -7,7 +7,8 @@ const networks = {
     "0x13881": "Mumbai",
     "0xa86a": "AVAX",
     "0x142":"KCC Testnet",
-    "0x141":"KCC Mainnet"
+    "0x141":"KCC Mainnet",
+    "0xa4b1": "Arbitrum"
   }
   
   export { networks };

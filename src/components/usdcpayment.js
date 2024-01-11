@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { ethers } from "ethers";
-import { Usofnem, UsofnemResolve } from '../config';
-import UsofnemAbi from '../src/contracts/Usofnem.json';
-import UsofnemReverseAbi from '../src/contracts/UsofnemReverse.json';
+import { Usofnem, UsofnemResolve } from '../../config';
+import USDCContractAbi  from '../contracts/USDCContract.json';
+import UsofnemAbi from '../contracts/Usofnem.json';
+import UsofnemReverseAbi from '../contracts/UsofnemReverse.json';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
-import { networks } from '../src/utils/networks';
+import { networks } from '../utils/networks';
 import { amber } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import {
@@ -25,10 +26,9 @@ import {
 	FormControl,
 	FormHelperText
 } from '@mui/material';
-import NotConnected from '../src/components/NotConnected';
-import Tss from "../src/components/Table";
-import Footer from "../src/components/Footer";
-import USDCContractAbi from '../src/contracts/USDCContract.json';
+import NotConnected from './NotConnected';
+import Tss from "./Table";
+import Footer from "./Footer";
 
 
 

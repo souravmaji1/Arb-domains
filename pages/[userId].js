@@ -83,7 +83,7 @@ const UserClaimed = () => {
             },
         }
     );
-        const tx = await contract.extendExpiration(userId, {value: ethers.utils.parseEther('0.001')});
+        const tx = await contract.extendExpiration(userId, {value: ethers.utils.parseEther('0.0031')});
         await tx.wait();
         toast('Successfully extended your Domain:',
         {
@@ -407,7 +407,7 @@ const UserClaimed = () => {
                         </Typography>
                        
                         <Button style={{fontFamily: "Unbounded, cursive",color:"black",background:"yellow"}} className='ttt'   onClick={extendExpiration}>
-                            Extend Domain Expiry for 0.001 MATIC
+                            Extend Domain Expiry for 0.0031 MATIC
                         </Button>
                     </Container>
                 </Box>

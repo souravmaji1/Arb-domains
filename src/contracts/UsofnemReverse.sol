@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.10;
 
-import "./Usofnem.sol";
+import "./Useofnem.sol";
 
 contract ReverseUON {
     
@@ -27,4 +27,16 @@ contract ReverseUON {
         require(uon.getAddress(name) == msg.sender, "You don't own this name");
         records[msg.sender] = name;
     }
+
+    function sendViaENS(string calldata ensName) public payable {
+    
+    // Resolve ENS name to owner address
+    address payable ensOwner = payable(uon.getAddress(ensName));
+
+    // Send ETH to the resolved address
+    (bool sent, ) = ensOwner.call{value: msg.value}("");
+    require(sent, "Failed to send Ether");
+
+  }
+
 }
